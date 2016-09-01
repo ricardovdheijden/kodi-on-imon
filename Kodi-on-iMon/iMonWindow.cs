@@ -74,20 +74,16 @@ namespace Kodi_on_iMon
         //Form handlers
         private void btnInitialise_Click(object sender, EventArgs e)
         {
-            lblStateOutput.Text = initialiseVFD();
-            tmrVfdRefreshRate.Enabled = true;
+            lblStateOutput.Text = initialise();
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-            strToVfdLine1 = txtInputLine1.Text;
-            strToVfdLine2 = txtInputLine2.Text;
-            //lblLine1.Text = txtInputLine1.Text;
-            //lblLine2.Text = txtInputLine2.Text;
-            //lblStateOutput.Text = sendToVfdApi(txtInputLine1.Text, txtInputLine2.Text);
+            setText(txtInputLine1.Text, txtInputLine2.Text);
         }
         private void btnDeinitialise_Click(object sender, EventArgs e)
         {
-            lblStateOutput.Text = deInitialiseVFD();
+            lblStateOutput.Text = deinitialise();
+            //lblStateOutput.Text = deInitialiseVFD();
         }
         private void btnCount_Click(object sender, EventArgs e)
         {
@@ -103,7 +99,15 @@ namespace Kodi_on_iMon
             //Line 1
             if (strToVfdLine1.Length > 16) // if the string is too long for the screen (>16) then start scrolling
             {
-                strToVfdScreenLine1 = strToVfdLine1.Substring(intStartPosToVfdScreenLine1, 16);
+                try
+                {
+                    strToVfdScreenLine1 = strToVfdLine1.Substring(intStartPosToVfdScreenLine1, 16);
+                }
+                catch //index out of bounds if the line gets shorter while scrolling
+                {
+                    intStartPosToVfdScreenLine1 = 0;
+                    strToVfdScreenLine1 = strToVfdLine1.Substring(intStartPosToVfdScreenLine1, 16);
+                }
                 //lblState.Text = "STATE " + intScrollStateLine1; //Debugging purposes, shows the current state
                 switch (intScrollStateLine1)
                 {
@@ -134,7 +138,15 @@ namespace Kodi_on_iMon
             //Line 2
             if (strToVfdLine2.Length > 16) // if the string is too long for the screen (>16) then start scrolling
             {
-                strToVfdScreenLine2 = strToVfdLine2.Substring(intStartPosToVfdScreenLine2, 16);
+                try 
+                {
+                    strToVfdScreenLine2 = strToVfdLine2.Substring(intStartPosToVfdScreenLine2, 16);
+                }
+                catch //index out of bounds if the line gets shorter while scrolling
+                {
+                    intStartPosToVfdScreenLine2 = 0;
+                    strToVfdScreenLine2 = strToVfdLine2.Substring(intStartPosToVfdScreenLine2, 16);
+                }
                 //lblState.Text = "STATE " + intScrollStateLine2; //Debugging purposes, shows the current state
                 switch (intScrollStateLine2)
                 {
@@ -171,7 +183,8 @@ namespace Kodi_on_iMon
 
         private void btnRefreshRate_Click(object sender, EventArgs e)
         {
-            tmrVfdRefreshRate.Interval = int.Parse(txtRefreshRate.Text);
+            setRefreshRate(int.Parse(txtRefreshRate.Text));
+            //tmrVfdRefreshRate.Interval = int.Parse(txtRefreshRate.Text);
         }
 
         private void tmrCount_Tick(object sender, EventArgs e)
@@ -191,6 +204,72 @@ namespace Kodi_on_iMon
         {
             intScrollStateLine2++;
             tmrScrollingLine2.Enabled = false;
+        }
+
+        // Public getters and setter
+
+        /*
+         * Sets the text that can be shown on the screen, it can be live updated
+         */
+        public void setText(string Line1, string Line2)
+        {
+            strToVfdLine1 = Line1;
+            strToVfdLine2 = Line2;
+        }
+
+        /*
+         * Sets the time on a given line on the screen
+         * lineNumber:                              0 for the first line / 1 for the second line
+         * currentHour/currentMinute/currentSecond: hour, minute, second as int
+         * totalHour/totalMinute/totalSecond:       hour, minute, second as int
+         */
+        public void setTime(int lineNumber, int currentHour, int currentMinute, int currentSecond, int totalHour, int totalMinute, int totalSecond)
+        {
+
+        }
+        
+        /*
+         * Sets refreshrate of screen: value in ms between refreshes
+         * 100 scrolls faster then 200
+         */
+        public void setRefreshRate (int refreshRate)
+        {
+            tmrVfdRefreshRate.Interval = refreshRate;
+        }
+
+        /*
+         * Sets delay in ms to wait when line is scrolled to the end
+         * Also applies for the time to wait at the start of a scrolling text
+         * 
+         */
+        public void setScrollDelay (int lineNumber, int delay)
+        {
+            if (lineNumber == 0)
+            {
+                tmrScrollingLine1.Interval = delay;
+            }
+            else if (lineNumber == 1)
+            {
+                tmrScrollingLine2.Interval = delay;
+            }
+            else if (lineNumber == -1)
+            {
+                tmrScrollingLine1.Interval = delay;
+                tmrScrollingLine2.Interval = delay;
+            }
+
+        }
+
+        public string initialise()
+        {
+            tmrVfdRefreshRate.Enabled = true;
+            return initialiseVFD();
+        }
+        
+        public string deinitialise()
+        {
+            tmrVfdRefreshRate.Enabled = false; //TODO: this line needs to be tested on the real VFD!
+            return deInitialiseVFD();
         }
     }
 }
