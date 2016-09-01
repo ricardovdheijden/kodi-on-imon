@@ -22,7 +22,7 @@ namespace Kodi_on_iMon
         private int intStartPosToVfdScreenLine1 = 0; //Start index of the visible part of the string on VFD
         private int intStartPosToVfdScreenLine2 = 0;
         private int intScrollStateLine1 = 0;
-        private int intScrollStateline2 = 0;
+        private int intScrollStateLine2 = 0;
         private int counter = 1;
 
         public iMonWindow()
@@ -100,22 +100,21 @@ namespace Kodi_on_iMon
          */
         private void tmrVfdRefreshrate_Tick(object sender, EventArgs e)
         {
-            //Line 1 -- werkt niet , zie line 2.
-            if (strToVfdLine1.Length > 16) // if the string is too long then start scrolling
+            //Line 1
+            if (strToVfdLine1.Length > 16) // if the string is too long for the screen (>16) then start scrolling
             {
                 strToVfdScreenLine1 = strToVfdLine1.Substring(intStartPosToVfdScreenLine1, 16);
-                lblState.Text = "STATE " + intScrollStateLine1;
+                //lblState.Text = "STATE " + intScrollStateLine1; //Debugging purposes, shows the current state
                 switch (intScrollStateLine1)
                 {
                     case 0:
-                        tmrScrollingLine1.Enabled = true;
+                        tmrScrollingLine1.Enabled = true; //Enables this timer, once done the timer proceeds the state to the next one
                         break;
                     case 1:
                         intStartPosToVfdScreenLine1++;
                         break;
                     case 2:
-                        //intScrollStateLine1 = 3;
-                        tmrScrollingLine1.Enabled = true;
+                        tmrScrollingLine1.Enabled = true; //Enables this timer, once done the timer proceeds the state to the next one
                         break;
                     case 3:
                         intStartPosToVfdScreenLine1 = 0;
@@ -127,29 +126,42 @@ namespace Kodi_on_iMon
                     intScrollStateLine1 = 2;
                 }
             }
-            else //send the full string which is <16 to the VFD
+            else //if <16 send the full string to the VFD (No Scrolling)
             {
                 strToVfdScreenLine1 = strToVfdLine1;
             }
 
             //Line 2
-            if (strToVfdLine2.Length > 16)
+            if (strToVfdLine2.Length > 16) // if the string is too long for the screen (>16) then start scrolling
             {
                 strToVfdScreenLine2 = strToVfdLine2.Substring(intStartPosToVfdScreenLine2, 16);
-                if ((intStartPosToVfdScreenLine2 + 16) < strToVfdLine2.Length)
+                //lblState.Text = "STATE " + intScrollStateLine2; //Debugging purposes, shows the current state
+                switch (intScrollStateLine2)
                 {
-                    intStartPosToVfdScreenLine2++; //todo: beslissing om teller terug op 0 te zetten wanneer de laatste 16 karakters getoond zijn.
-                }
-                else
-                {
+                    case 0:
+                        tmrScrollingLine2.Enabled = true; //Enables this timer, once done the timer proceeds the state to the next one
+                        break;
+                    case 1:
+                        intStartPosToVfdScreenLine2++;
+                        break;
+                    case 2:
+                        tmrScrollingLine2.Enabled = true; //Enables this timer, once done the timer proceeds the state to the next one
+                        break;
+                    case 3:
                         intStartPosToVfdScreenLine2 = 0;
+                        intScrollStateLine2 = 0;
+                        break;
+                }
+                if (((intStartPosToVfdScreenLine2 + 16) == strToVfdLine2.Length) && (intScrollStateLine2 < 2)) //if end of line is there, next state
+                {
+                    intScrollStateLine2 = 2;
                 }
             }
-            else
+            else //if <16 send the full string to the VFD (No Scrolling)
             {
                 strToVfdScreenLine2 = strToVfdLine2;
             }
-
+            
             // Write both lines to VFD
             if (!((strToVfdLine1.Equals(previousToVfdScreenLine1)) && (strToVfdLine2.Equals(previousToVfdScreenLine2))))
             {
@@ -177,7 +189,8 @@ namespace Kodi_on_iMon
 
         private void tmrScrollingLine2_Tick(object sender, EventArgs e)
         {
-            //intScrollStateLine2++;
+            intScrollStateLine2++;
+            tmrScrollingLine2.Enabled = false;
         }
     }
 }
