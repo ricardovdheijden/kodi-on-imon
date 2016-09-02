@@ -1,6 +1,6 @@
 ﻿namespace Kodi_on_iMon
 {
-    partial class iMonWindow
+    partial class iMon
     {
         /// <summary>
         /// Required designer variable.

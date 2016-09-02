@@ -10,7 +10,7 @@ using iMon.DisplayApi;
 
 namespace Kodi_on_iMon
 {
-    public partial class iMonWindow : Form
+    public partial class iMon : Form
     {
         private uint WM_COMMAND = 12345;
         private String previousToVfdScreenLine1 = ""; //The 16 positions long string that is sent to VFD perviously
@@ -25,7 +25,7 @@ namespace Kodi_on_iMon
         private int intScrollStateLine2 = 0;
         private int counter = 1;
 
-        public iMonWindow()
+        public iMon()
         {
             InitializeComponent();
         }

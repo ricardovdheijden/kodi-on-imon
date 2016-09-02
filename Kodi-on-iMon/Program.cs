@@ -15,7 +15,8 @@ namespace Kodi_on_iMon
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new iMonWindow());
+            //Application.Run(new iMon()); //Loading the test driver instead that uses functionality
+            Application.Run(new iMonTestDriver());
         }
     }
 }
