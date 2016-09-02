@@ -75,6 +75,7 @@ namespace Kodi_on_iMon
         private void btnInitialise_Click(object sender, EventArgs e)
         {
             lblStateOutput.Text = initialise();
+            tmrFormRefreshRate.Enabled = true;
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -83,12 +84,19 @@ namespace Kodi_on_iMon
         private void btnDeinitialise_Click(object sender, EventArgs e)
         {
             lblStateOutput.Text = deinitialise();
+            tmrFormRefreshRate.Enabled = false;
             //lblStateOutput.Text = deInitialiseVFD();
         }
         private void btnCount_Click(object sender, EventArgs e)
         {
             tmrCount.Enabled = !tmrCount.Enabled;
             tmrCount.Interval = int.Parse(txtInterval.Text);
+        }
+
+        private void tmrFormRefreshRate_Tick(object sender, EventArgs e)
+        {
+            lblLine1.Text = getVFDText(0);
+            lblLine2.Text = getVFDText(1);
         }
 
         /*
@@ -177,13 +185,14 @@ namespace Kodi_on_iMon
             // Write both lines to VFD
             if (!((strToVfdLine1.Equals(previousToVfdScreenLine1)) && (strToVfdLine2.Equals(previousToVfdScreenLine2))))
             {
-                lblStateOutput.Text = sendToScreen(strToVfdScreenLine1, strToVfdScreenLine2);
+                lblStateOutput.Text = sendToScreen(strToVfdScreenLine1, strToVfdScreenLine2,true);
             }
         }
 
         private void btnRefreshRate_Click(object sender, EventArgs e)
         {
             setRefreshRate(int.Parse(txtRefreshRate.Text));
+            tmrFormRefreshRate.Interval = int.Parse(txtRefreshRate.Text);
             //tmrVfdRefreshRate.Interval = int.Parse(txtRefreshRate.Text);
         }
 
@@ -258,6 +267,46 @@ namespace Kodi_on_iMon
                 tmrScrollingLine2.Interval = delay;
             }
 
+        }
+
+        /*
+         * returns the full text that is being shown on the display (in case of scrolling, the full string is still being returned)
+         * lineNumber: 0 for first line / 1 for second line
+         */
+        public string getText(int lineNumber)
+        {
+            if (lineNumber == 0)
+            {
+                return strToVfdLine1;
+            }
+            else if (lineNumber == 1)
+            {
+                return strToVfdLine2;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /*
+         * returns the exact text that is displayed on the VFD (in case of scrolling, only the part that is visible)
+         * lineNumber: 0 for first line / 1 for second line
+         */
+        public string getVFDText(int lineNumber)
+        {
+            if (lineNumber == 0)
+            {
+                return strToVfdScreenLine1;
+            }
+            else if (lineNumber == 1)
+            {
+                return strToVfdScreenLine2;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public string initialise()

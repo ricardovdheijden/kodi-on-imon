@@ -52,6 +52,7 @@
             this.tmrCount = new System.Windows.Forms.Timer(this.components);
             this.tmrScrollingLine1 = new System.Windows.Forms.Timer(this.components);
             this.tmrScrollingLine2 = new System.Windows.Forms.Timer(this.components);
+            this.tmrFormRefreshRate = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblStateOutput
@@ -250,6 +251,11 @@
             this.tmrScrollingLine2.Interval = 1000;
             this.tmrScrollingLine2.Tick += new System.EventHandler(this.tmrScrollingLine2_Tick);
             // 
+            // tmrFormRefreshRate
+            // 
+            this.tmrFormRefreshRate.Interval = 250;
+            this.tmrFormRefreshRate.Tick += new System.EventHandler(this.tmrFormRefreshRate_Tick);
+            // 
             // iMonWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,6 +312,7 @@
         private System.Windows.Forms.Timer tmrCount;
         private System.Windows.Forms.Timer tmrScrollingLine1;
         private System.Windows.Forms.Timer tmrScrollingLine2;
+        private System.Windows.Forms.Timer tmrFormRefreshRate;
     }
 }
 
