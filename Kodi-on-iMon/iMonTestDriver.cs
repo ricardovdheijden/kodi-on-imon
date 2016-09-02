@@ -37,8 +37,8 @@ namespace Kodi_on_iMon
 
         private void tmrFormRefreshRate_Tick(object sender, EventArgs e)
         {
-            lblLine1.Text = imon.getText(0);
-            lblLine2.Text = imon.getText(1);
+            lblLine1.Text = imon.getVFDText(0);
+            lblLine2.Text = imon.getVFDText(1);
         }
 
         private void btnRefreshRate_Click(object sender, EventArgs e)
