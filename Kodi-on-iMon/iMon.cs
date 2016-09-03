@@ -246,6 +246,10 @@ namespace Kodi_on_iMon
             tmrVfdRefreshRate.Interval = refreshRate;
         }
 
+        public void setScrollDelay (int delay)
+        {
+            setScrollDelay(-1, delay);
+        }
         /*
          * Sets delay in ms to wait when line is scrolled to the end
          * Also applies for the time to wait at the start of a scrolling text

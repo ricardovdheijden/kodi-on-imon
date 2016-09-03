@@ -43,7 +43,13 @@ namespace Kodi_on_iMon
 
         private void btnRefreshRate_Click(object sender, EventArgs e)
         {
-            
+            tmrFormRefreshRate.Interval = int.Parse(txtRefreshRate.Text);
+            imon.setRefreshRate(int.Parse(txtRefreshRate.Text));
+        }
+
+        private void btnScrollDelay_Click(object sender, EventArgs e)
+        {
+            imon.setScrollDelay(int.Parse(txtScrollDelay.Text));
         }
     }
 }

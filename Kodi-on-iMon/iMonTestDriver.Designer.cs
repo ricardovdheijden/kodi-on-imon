@@ -43,6 +43,9 @@
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
             this.btnRefreshRate = new System.Windows.Forms.Button();
             this.tmrFormRefreshRate = new System.Windows.Forms.Timer(this.components);
+            this.txtScrollDelay = new System.Windows.Forms.TextBox();
+            this.btnScrollDelay = new System.Windows.Forms.Button();
+            this.lblScrollDelay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblStateOutput
@@ -80,7 +83,7 @@
             this.lblLine1.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblLine1.Font = new System.Drawing.Font("Courier New", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLine1.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lblLine1.Location = new System.Drawing.Point(15, 130);
+            this.lblLine1.Location = new System.Drawing.Point(15, 138);
             this.lblLine1.Name = "lblLine1";
             this.lblLine1.Size = new System.Drawing.Size(270, 30);
             this.lblLine1.TabIndex = 3;
@@ -90,7 +93,7 @@
             this.lblLine2.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblLine2.Font = new System.Drawing.Font("Courier New", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLine2.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lblLine2.Location = new System.Drawing.Point(15, 160);
+            this.lblLine2.Location = new System.Drawing.Point(15, 168);
             this.lblLine2.Name = "lblLine2";
             this.lblLine2.Size = new System.Drawing.Size(270, 30);
             this.lblLine2.TabIndex = 4;
@@ -99,7 +102,7 @@
             // 
             this.lblDirectWrite.AutoSize = true;
             this.lblDirectWrite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDirectWrite.Location = new System.Drawing.Point(12, 204);
+            this.lblDirectWrite.Location = new System.Drawing.Point(12, 210);
             this.lblDirectWrite.Name = "lblDirectWrite";
             this.lblDirectWrite.Size = new System.Drawing.Size(115, 13);
             this.lblDirectWrite.TabIndex = 5;
@@ -107,7 +110,7 @@
             // 
             // txtInputLine1
             // 
-            this.txtInputLine1.Location = new System.Drawing.Point(13, 221);
+            this.txtInputLine1.Location = new System.Drawing.Point(13, 227);
             this.txtInputLine1.Name = "txtInputLine1";
             this.txtInputLine1.Size = new System.Drawing.Size(121, 20);
             this.txtInputLine1.TabIndex = 6;
@@ -115,7 +118,7 @@
             // 
             // txtInputLine2
             // 
-            this.txtInputLine2.Location = new System.Drawing.Point(13, 248);
+            this.txtInputLine2.Location = new System.Drawing.Point(13, 254);
             this.txtInputLine2.Name = "txtInputLine2";
             this.txtInputLine2.Size = new System.Drawing.Size(121, 20);
             this.txtInputLine2.TabIndex = 7;
@@ -123,7 +126,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(164, 221);
+            this.btnSend.Location = new System.Drawing.Point(164, 227);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(120, 47);
             this.btnSend.TabIndex = 8;
@@ -172,11 +175,41 @@
             this.tmrFormRefreshRate.Interval = 250;
             this.tmrFormRefreshRate.Tick += new System.EventHandler(this.tmrFormRefreshRate_Tick);
             // 
+            // txtScrollDelay
+            // 
+            this.txtScrollDelay.Location = new System.Drawing.Point(121, 112);
+            this.txtScrollDelay.Name = "txtScrollDelay";
+            this.txtScrollDelay.Size = new System.Drawing.Size(45, 20);
+            this.txtScrollDelay.TabIndex = 19;
+            this.txtScrollDelay.Text = "1000";
+            // 
+            // btnScrollDelay
+            // 
+            this.btnScrollDelay.Location = new System.Drawing.Point(209, 110);
+            this.btnScrollDelay.Name = "btnScrollDelay";
+            this.btnScrollDelay.Size = new System.Drawing.Size(75, 23);
+            this.btnScrollDelay.TabIndex = 20;
+            this.btnScrollDelay.Text = "Apply";
+            this.btnScrollDelay.UseVisualStyleBackColor = true;
+            this.btnScrollDelay.Click += new System.EventHandler(this.btnScrollDelay_Click);
+            // 
+            // lblScrollDelay
+            // 
+            this.lblScrollDelay.AutoSize = true;
+            this.lblScrollDelay.Location = new System.Drawing.Point(12, 114);
+            this.lblScrollDelay.Name = "lblScrollDelay";
+            this.lblScrollDelay.Size = new System.Drawing.Size(105, 13);
+            this.lblScrollDelay.TabIndex = 21;
+            this.lblScrollDelay.Text = "VFD scroll delay (ms)";
+            // 
             // iMonTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 287);
+            this.ClientSize = new System.Drawing.Size(298, 311);
+            this.Controls.Add(this.lblScrollDelay);
+            this.Controls.Add(this.btnScrollDelay);
+            this.Controls.Add(this.txtScrollDelay);
             this.Controls.Add(this.btnRefreshRate);
             this.Controls.Add(this.txtRefreshRate);
             this.Controls.Add(this.lblRefreshRate);
@@ -213,6 +246,9 @@
         private System.Windows.Forms.TextBox txtRefreshRate;
         private System.Windows.Forms.Button btnRefreshRate;
         private System.Windows.Forms.Timer tmrFormRefreshRate;
+        private System.Windows.Forms.TextBox txtScrollDelay;
+        private System.Windows.Forms.Button btnScrollDelay;
+        private System.Windows.Forms.Label lblScrollDelay;
 
     }
 }
