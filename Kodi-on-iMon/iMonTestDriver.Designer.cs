@@ -46,6 +46,7 @@
             this.txtScrollDelay = new System.Windows.Forms.TextBox();
             this.btnScrollDelay = new System.Windows.Forms.Button();
             this.lblScrollDelay = new System.Windows.Forms.Label();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblStateOutput
@@ -154,17 +155,16 @@
             // 
             // txtRefreshRate
             // 
-            this.txtRefreshRate.Location = new System.Drawing.Point(121, 86);
+            this.txtRefreshRate.Location = new System.Drawing.Point(124, 86);
             this.txtRefreshRate.Name = "txtRefreshRate";
             this.txtRefreshRate.Size = new System.Drawing.Size(45, 20);
             this.txtRefreshRate.TabIndex = 17;
-            this.txtRefreshRate.Text = "250";
             // 
             // btnRefreshRate
             // 
-            this.btnRefreshRate.Location = new System.Drawing.Point(209, 84);
+            this.btnRefreshRate.Location = new System.Drawing.Point(205, 83);
             this.btnRefreshRate.Name = "btnRefreshRate";
-            this.btnRefreshRate.Size = new System.Drawing.Size(75, 23);
+            this.btnRefreshRate.Size = new System.Drawing.Size(79, 23);
             this.btnRefreshRate.TabIndex = 18;
             this.btnRefreshRate.Text = "Apply";
             this.btnRefreshRate.UseVisualStyleBackColor = true;
@@ -177,17 +177,16 @@
             // 
             // txtScrollDelay
             // 
-            this.txtScrollDelay.Location = new System.Drawing.Point(121, 112);
+            this.txtScrollDelay.Location = new System.Drawing.Point(124, 112);
             this.txtScrollDelay.Name = "txtScrollDelay";
             this.txtScrollDelay.Size = new System.Drawing.Size(45, 20);
             this.txtScrollDelay.TabIndex = 19;
-            this.txtScrollDelay.Text = "1000";
             // 
             // btnScrollDelay
             // 
-            this.btnScrollDelay.Location = new System.Drawing.Point(209, 110);
+            this.btnScrollDelay.Location = new System.Drawing.Point(205, 110);
             this.btnScrollDelay.Name = "btnScrollDelay";
-            this.btnScrollDelay.Size = new System.Drawing.Size(75, 23);
+            this.btnScrollDelay.Size = new System.Drawing.Size(79, 23);
             this.btnScrollDelay.TabIndex = 20;
             this.btnScrollDelay.Text = "Apply";
             this.btnScrollDelay.UseVisualStyleBackColor = true;
@@ -202,11 +201,22 @@
             this.lblScrollDelay.TabIndex = 21;
             this.lblScrollDelay.Text = "VFD scroll delay (ms)";
             // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Location = new System.Drawing.Point(164, 280);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(120, 29);
+            this.btnSaveSettings.TabIndex = 22;
+            this.btnSaveSettings.Text = "Save Settings";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
             // iMonTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 311);
+            this.ClientSize = new System.Drawing.Size(298, 318);
+            this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.lblScrollDelay);
             this.Controls.Add(this.btnScrollDelay);
             this.Controls.Add(this.txtScrollDelay);
@@ -249,6 +259,7 @@
         private System.Windows.Forms.TextBox txtScrollDelay;
         private System.Windows.Forms.Button btnScrollDelay;
         private System.Windows.Forms.Label lblScrollDelay;
+        private System.Windows.Forms.Button btnSaveSettings;
 
     }
 }

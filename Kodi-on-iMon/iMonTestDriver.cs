@@ -18,6 +18,8 @@ namespace Kodi_on_iMon
         {
             InitializeComponent();
             imon = new iMon();
+            txtRefreshRate.Text = Properties.Settings.Default.VfdRefreshRate.ToString();
+            txtScrollDelay.Text = Properties.Settings.Default.VfdScrollDelay.ToString();
         }
 
         private void btnInitialise_Click(object sender, EventArgs e)
@@ -50,6 +52,13 @@ namespace Kodi_on_iMon
         private void btnScrollDelay_Click(object sender, EventArgs e)
         {
             imon.setScrollDelay(int.Parse(txtScrollDelay.Text));
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.VfdRefreshRate = int.Parse(txtRefreshRate.Text);
+            Properties.Settings.Default.VfdScrollDelay = int.Parse(txtScrollDelay.Text);
+            Properties.Settings.Default.Save();
         }
     }
 }
