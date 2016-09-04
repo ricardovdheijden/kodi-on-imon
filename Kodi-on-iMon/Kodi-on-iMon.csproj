@@ -82,6 +82,13 @@
     <Compile Include="iMon.Designer.cs">
       <DependentUpon>iMon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kodi.cs" />
+    <Compile Include="KodiTestDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KodiTestDriver.Designer.cs">
+      <DependentUpon>KodiTestDriver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="iMon.resx">
@@ -89,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="iMonTestDriver.resx">
       <DependentUpon>iMonTestDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KodiTestDriver.resx">
+      <DependentUpon>KodiTestDriver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
