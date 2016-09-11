@@ -33,16 +33,16 @@
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(96, 110);
+            this.txtTitle.Location = new System.Drawing.Point(24, 66);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(100, 20);
+            this.txtTitle.Size = new System.Drawing.Size(697, 20);
             this.txtTitle.TabIndex = 0;
             // 
             // KodiTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(752, 151);
             this.Controls.Add(this.txtTitle);
             this.Name = "KodiTestDriver";
             this.Text = "KodiTestDriver";
