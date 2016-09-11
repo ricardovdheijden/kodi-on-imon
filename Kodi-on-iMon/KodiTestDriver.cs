@@ -17,6 +17,7 @@ namespace Kodi_on_iMon
             InitializeComponent();
             kodi = new Kodi();
             txtTitle.Text = kodi.getTitle();
+            txtEmail.Text = kodi.getEmail();
         }
     }
 }

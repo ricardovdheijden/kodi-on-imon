@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtTitle
@@ -38,11 +39,19 @@
             this.txtTitle.Size = new System.Drawing.Size(697, 20);
             this.txtTitle.TabIndex = 0;
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(24, 119);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(697, 20);
+            this.txtEmail.TabIndex = 1;
+            // 
             // KodiTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 151);
+            this.ClientSize = new System.Drawing.Size(752, 213);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtTitle);
             this.Name = "KodiTestDriver";
             this.Text = "KodiTestDriver";
@@ -54,6 +63,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.TextBox txtEmail;
 
     }
 }
