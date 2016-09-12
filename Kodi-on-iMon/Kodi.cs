@@ -17,14 +17,24 @@ namespace Kodi_on_iMon
         
         public string getTitle()
         {
+            WebClient webClient = new WebClient();
+            string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
+            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
+
+            return response;
+        }
+
+        public string getActivePlayers()
+        {
             /*WebClient webClient = new WebClient();
-            dynamic result = JsonValue.Parse(webClient.DownloadString("https://api.foursquare.com/v2/users/self?oauth_token=XXXXXXX"));
-            Console.WriteLine(result.response.user.firstName);
-             * http://localhost:8080/jsonrpc
-            */
+           dynamic result = JsonValue.Parse(webClient.DownloadString("https://api.foursquare.com/v2/users/self?oauth_token=XXXXXXX"));
+           Console.WriteLine(result.response.user.firstName);
+            * http://localhost:8080/jsonrpc
+           */
 
             WebClient webClient = new WebClient();
-            string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Application.GetProperties\", \"params\": {\"properties\": [\"volume\"]}, \"id\": 1}";
+            //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Application.GetProperties\", \"params\": {\"properties\": [\"volume\"]}, \"id\": 1}";
+            string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetActivePlayers\", \"id\": 1}";
             string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
 
             return response;
