@@ -13,15 +13,18 @@ namespace Kodi_on_iMon
         [STAThread]
         static void Main(string[] args)
         {
-            if (args.Length > 0)
-            {
-                MessageBox.Show(args[0]);
-            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new iMon()); //Loading the test driver instead that uses functionality
-            Application.Run(new iMonTestDriver());
-            //Application.Run(new KodiTestDriver());
+            if (args.Length > 0)
+            {
+                Application.Run(new iMonTestDriver(args[0])); // iMonTestDriver() text to show
+            }
+            else
+            {
+                //Application.Run(new iMon()); //Loading the test driver instead that uses functionality
+                Application.Run(new iMonTestDriver());
+                //Application.Run(new KodiTestDriver());
+            }
         }
     }
 }
