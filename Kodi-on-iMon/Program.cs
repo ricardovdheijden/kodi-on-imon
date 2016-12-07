@@ -15,9 +15,12 @@ namespace Kodi_on_iMon
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (args.Length > 0)
+            if (args.Length > 0) //add logic to find a parameter
             {
-                Application.Run(new iMonTestDriver(args[0])); // iMonTestDriver() text to show
+                if (args[0] == "idle")
+                {
+                    Application.Run(new iMonIdle(args[1]));
+                }
             }
             else
             {

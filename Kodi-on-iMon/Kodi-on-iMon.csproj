@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iMonIdle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="iMonIdle.Designer.cs">
+      <DependentUpon>iMonIdle.cs</DependentUpon>
+    </Compile>
     <Compile Include="iMonTestDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="iMon.resx">
       <DependentUpon>iMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="iMonIdle.resx">
+      <DependentUpon>iMonIdle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="iMonTestDriver.resx">
       <DependentUpon>iMonTestDriver.cs</DependentUpon>

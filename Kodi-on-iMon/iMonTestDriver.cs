@@ -21,15 +21,6 @@ namespace Kodi_on_iMon
             txtScrollDelay.Text = Properties.Settings.Default.VfdScrollDelay.ToString();
         }
 
-        public iMonTestDriver(string text)
-        {
-            MessageBox.Show(text);
-            InitializeComponent();
-            imon = new iMon();
-            txtRefreshRate.Text = Properties.Settings.Default.VfdRefreshRate.ToString();
-            txtScrollDelay.Text = Properties.Settings.Default.VfdScrollDelay.ToString();
-        }
-
         private void btnInitialise_Click(object sender, EventArgs e)
         {
             lblStateOutput.Text = imon.initialise();
