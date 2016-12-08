@@ -32,6 +32,10 @@ namespace Kodi_on_iMon
         {
             InitializeComponent();
 
+            this.ShowInTaskbar = false;
+            notifyIcon.Visible = true;
+            this.WindowState = FormWindowState.Minimized;
+
             imon = new iMon();
             imon.initialise();
             imon.setRefreshRate(500);
@@ -47,5 +51,12 @@ namespace Kodi_on_iMon
             lblLine1.Text = imon.getVFDText(0);
             lblLine2.Text = imon.getVFDText(1);
         }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
+        
+
     }
 }

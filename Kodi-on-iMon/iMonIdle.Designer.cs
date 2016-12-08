@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(iMonIdle));
             this.lblLine2 = new System.Windows.Forms.Label();
             this.lblLine1 = new System.Windows.Forms.Label();
             this.tmrFormRefreshRate = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // lblLine2
@@ -59,6 +61,13 @@
             this.tmrFormRefreshRate.Interval = 250;
             this.tmrFormRefreshRate.Tick += new System.EventHandler(this.tmrFormRefreshRate_Tick);
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "iMon Idle";
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
             // iMonIdle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -77,5 +86,6 @@
         private System.Windows.Forms.Label lblLine2;
         private System.Windows.Forms.Label lblLine1;
         private System.Windows.Forms.Timer tmrFormRefreshRate;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
