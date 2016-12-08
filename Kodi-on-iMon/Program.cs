@@ -40,9 +40,9 @@ namespace Kodi_on_iMon
             else
             {
                 //Application.Run(new iMon()); //Loading the test driver instead that uses functionality
-                Application.Run(new iMonTestDriver());
+                //Application.Run(new iMonTestDriver());
                 //Application.Run(new KodiTestDriver());
-                //Application.Run(new iMonIdle());
+                Application.Run(new iMonIdle());
             }
         }
     }

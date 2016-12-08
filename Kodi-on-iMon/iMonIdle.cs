@@ -54,9 +54,18 @@ namespace Kodi_on_iMon
 
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            this.Show();
             this.WindowState = FormWindowState.Normal;
         }
-        
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+            }
+        }
     }
 }
