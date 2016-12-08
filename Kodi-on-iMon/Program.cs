@@ -17,9 +17,24 @@ namespace Kodi_on_iMon
             Application.SetCompatibleTextRenderingDefault(false);
             if (args.Length > 0) //add logic to find a parameter
             {
-                if (args[0] == "idle")
+                for (int i = 0; i < args.Length; i++)
                 {
-                    Application.Run(new iMonIdle(args[1]));
+                    if (args[i] == "idle" && args.Length > i + 1)
+                    {
+                        Application.Run(new iMonIdle(args[i + 1]));
+                    }
+                    else if (args[i] == "idle")
+                    {
+                        Application.Run(new iMonIdle());
+                    }
+                    else if (args[i] == "imon-testdriver")
+                    {
+                        Application.Run(new iMonTestDriver());
+                    }
+                    else if (args[i] == "kodi-testdriver")
+                    {
+                        Application.Run(new KodiTestDriver());
+                    }
                 }
             }
             else
