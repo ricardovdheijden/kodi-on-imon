@@ -79,6 +79,12 @@
     <Compile Include="iMonIdle.Designer.cs">
       <DependentUpon>iMonIdle.cs</DependentUpon>
     </Compile>
+    <Compile Include="iMonMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="iMonMenu.Designer.cs">
+      <DependentUpon>iMonMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="iMonTestDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="iMonIdle.resx">
       <DependentUpon>iMonIdle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="iMonMenu.resx">
+      <DependentUpon>iMonMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="iMonTestDriver.resx">
       <DependentUpon>iMonTestDriver.cs</DependentUpon>
