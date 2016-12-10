@@ -33,12 +33,12 @@ namespace Kodi_on_iMon
         // direction 1 = down (cursorAt + 1)
         public void scroll(int direction)
         {
-            if (direction == 0)
+            if (direction == 0 && cursorAt > 0)
             {
                 cursorAt--;
                 refreshScreen();
             }
-            else if (direction == 1)
+            else if (direction == 1 && cursorAt < menu.Length - 1)
             {
                 cursorAt++;
                 refreshScreen();
@@ -47,7 +47,14 @@ namespace Kodi_on_iMon
 
         public void refreshScreen()
         {
-            imon.setText("> " + menu[cursorAt],"  " + menu[cursorAt+1]);
+            if (cursorAt + 1 < menu.Length)
+            {
+                imon.setText("> " + menu[cursorAt], "  " + menu[cursorAt + 1]);
+            }
+            else
+            {
+                imon.setText("> " + menu[cursorAt], "");
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
