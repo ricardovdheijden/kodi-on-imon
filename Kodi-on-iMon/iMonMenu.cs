@@ -12,7 +12,7 @@ namespace Kodi_on_iMon
     public partial class iMonMenu : Form
     {
         iMon imon;
-        string[] menu = {"item 1","item 2","item 3","item 4","item 5", "item 6", "item 7", "item 8"};
+        string[,] menu = { {"item 1", "value 1" }, {"item 2", "value 2" }, {"item 3", "value 3" } };
         int cursorAt = 0;
         
         public iMonMenu()
@@ -38,7 +38,7 @@ namespace Kodi_on_iMon
                 cursorAt--;
                 refreshScreen();
             }
-            else if (direction == 1 && cursorAt < menu.Length - 1)
+            else if (direction == 1 && cursorAt < menu.GetLength(0) - 1)
             {
                 cursorAt++;
                 refreshScreen();
@@ -47,13 +47,13 @@ namespace Kodi_on_iMon
 
         public void refreshScreen()
         {
-            if (cursorAt + 1 < menu.Length)
+            if (cursorAt + 1 < menu.GetLength(0))
             {
-                imon.setText("> " + menu[cursorAt], "  " + menu[cursorAt + 1]);
+                imon.setText("> " + menu[cursorAt, 0], "  " + menu[cursorAt + 1, 0]);
             }
             else
             {
-                imon.setText("> " + menu[cursorAt], "");
+                imon.setText("> " + menu[cursorAt, 0], "");
             }
         }
 
@@ -69,8 +69,8 @@ namespace Kodi_on_iMon
             }
             else if (keyData == Keys.Enter)
             {
-                MessageBox.Show("You pressed Enter key");
-                return true;
+                MessageBox.Show("You selected " + menu[cursorAt, 0] + ", which has data " + menu[cursorAt, 1] + " in it.");
+                //return true; //possibly not needed
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
