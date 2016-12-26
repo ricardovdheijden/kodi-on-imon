@@ -12,15 +12,15 @@ namespace Kodi_on_iMon
     public partial class iMonIdle : Form
     {
         iMon imon;
-        int refreshRate = 500;
-        int scrollDelay = 5000;
+        int refreshRate = 500; //500
+        int scrollDelay = 5000; //5000
 
         public iMonIdle()
         {
             string initText = " MediaCenter-PC                 IP: 192.168.1.11";
-            init(initText, "");
-            tmrSwapLines.Interval = 2 * ( 2 * scrollDelay + (initText.Length - 16) * refreshRate);
-            tmrSwapLines.Enabled = true;
+            init(initText, false);
+            //tmrSwapLines.Interval = 5 * ( 2 * scrollDelay + (initText.Length - 16) * refreshRate);
+            //tmrSwapLines.Enabled = true;
         }
 
         public iMonIdle(string textLine1, string textLine2)
@@ -28,6 +28,10 @@ namespace Kodi_on_iMon
             init(textLine1,textLine2);
         }
 
+        public iMonIdle(string textLine, bool swapAfterEveryCycle)
+        {
+
+        }
         public iMonIdle(string text)
         {
             init(text, "");
@@ -46,6 +50,24 @@ namespace Kodi_on_iMon
             imon.setRefreshRate(refreshRate);
             imon.setScrollDelay(scrollDelay);
             imon.setText(textLine1, textLine2);
+
+            tmrFormRefreshRate.Interval = refreshRate;
+            tmrFormRefreshRate.Enabled = true;
+        }
+
+        private void init(string textLine, bool swapAfterEveryCycle)
+        {
+            InitializeComponent();
+
+            this.ShowInTaskbar = false;
+            notifyIcon.Visible = true;
+            this.WindowState = FormWindowState.Minimized;
+
+            imon = new iMon();
+            imon.initialise();
+            imon.setRefreshRate(refreshRate);
+            imon.setScrollDelay(scrollDelay);
+            imon.setText(textLine, swapAfterEveryCycle);
 
             tmrFormRefreshRate.Interval = refreshRate;
             tmrFormRefreshRate.Enabled = true;
@@ -75,7 +97,7 @@ namespace Kodi_on_iMon
 
         private void tmrSwapLines_Tick(object sender, EventArgs e)
         {
-            imon.setText(imon.getText(1), imon.getText(0));
+            //imon.setText(imon.getText(1), imon.getText(0));
         }
     }
 }

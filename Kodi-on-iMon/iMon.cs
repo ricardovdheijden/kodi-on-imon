@@ -24,6 +24,7 @@ namespace Kodi_on_iMon
         private int intScrollStateLine1 = 0;
         private int intScrollStateLine2 = 0;
         private int counter = 1;
+        private bool swapLines = false; //If true: it swaps lines 0 and 1 after the end of the line is reached
 
         public iMon()
         {
@@ -130,12 +131,20 @@ namespace Kodi_on_iMon
                         break;
                     case 3:
                         intStartPosToVfdScreenLine1 = 0;
-                        intScrollStateLine1 = 0;
                         break;
                 }
                 if (((intStartPosToVfdScreenLine1 + 16) == strToVfdLine1.Length) && (intScrollStateLine1 < 2)) //if end of line is there, next state
                 {
                     intScrollStateLine1 = 2;
+                }
+                if (swapLines == true && intScrollStateLine1 == 3)
+                {
+                    intScrollStateLine1 = 0;
+                    setText(strToVfdLine2, strToVfdLine1);
+                }
+                else if (swapLines == false && intScrollStateLine1 == 3)
+                {
+                    intScrollStateLine1 = 0;
                 }
             }
             else //if <16 send the full string to the VFD (No Scrolling)
@@ -169,12 +178,20 @@ namespace Kodi_on_iMon
                         break;
                     case 3:
                         intStartPosToVfdScreenLine2 = 0;
-                        intScrollStateLine2 = 0;
                         break;
                 }
                 if (((intStartPosToVfdScreenLine2 + 16) == strToVfdLine2.Length) && (intScrollStateLine2 < 2)) //if end of line is there, next state
                 {
                     intScrollStateLine2 = 2;
+                }
+                if (swapLines == true && intScrollStateLine2 == 3)
+                {
+                    intScrollStateLine2 = 0;
+                    setText(strToVfdLine2, strToVfdLine1);
+                }
+                else if (swapLines == false && intScrollStateLine2 == 3)
+                {
+                    intScrollStateLine2 = 0;
                 }
             }
             else //if <16 send the full string to the VFD (No Scrolling)
@@ -224,6 +241,12 @@ namespace Kodi_on_iMon
         {
             strToVfdLine1 = Line1;
             strToVfdLine2 = Line2;
+        }
+
+        public void setText(string Line, bool swapAfterEveryCycle)
+        {
+            strToVfdLine1 = Line;
+            swapLines = swapAfterEveryCycle;
         }
 
         /*
