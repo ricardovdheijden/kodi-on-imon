@@ -34,7 +34,6 @@
             this.lblLine1 = new System.Windows.Forms.Label();
             this.tmrFormRefreshRate = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tmrSwapLines = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblLine2
@@ -69,11 +68,6 @@
             this.notifyIcon.Text = "iMon Idle";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
-            // tmrSwapLines
-            // 
-            this.tmrSwapLines.Interval = 1000;
-            this.tmrSwapLines.Tick += new System.EventHandler(this.tmrSwapLines_Tick);
-            // 
             // iMonIdle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -93,6 +87,5 @@
         private System.Windows.Forms.Label lblLine1;
         private System.Windows.Forms.Timer tmrFormRefreshRate;
         private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.Timer tmrSwapLines;
     }
 }

@@ -12,15 +12,13 @@ namespace Kodi_on_iMon
     public partial class iMonIdle : Form
     {
         iMon imon;
-        int refreshRate = 500; //500
-        int scrollDelay = 5000; //5000
+        int refreshRate = 500;
+        int scrollDelay = 5000;
 
         public iMonIdle()
         {
             string initText = " MediaCenter-PC                 IP: 192.168.1.11";
-            init(initText, false);
-            //tmrSwapLines.Interval = 5 * ( 2 * scrollDelay + (initText.Length - 16) * refreshRate);
-            //tmrSwapLines.Enabled = true;
+            init(initText, true);
         }
 
         public iMonIdle(string textLine1, string textLine2)
@@ -30,11 +28,7 @@ namespace Kodi_on_iMon
 
         public iMonIdle(string textLine, bool swapAfterEveryCycle)
         {
-
-        }
-        public iMonIdle(string text)
-        {
-            init(text, "");
+            init(textLine, swapAfterEveryCycle);
         }
 
         private void init(string textLine1, string textLine2)
@@ -93,11 +87,6 @@ namespace Kodi_on_iMon
             {
                 this.Hide();
             }
-        }
-
-        private void tmrSwapLines_Tick(object sender, EventArgs e)
-        {
-            //imon.setText(imon.getText(1), imon.getText(0));
         }
     }
 }
