@@ -39,7 +39,7 @@
             // 
             this.txtActivePlayersJSON.Location = new System.Drawing.Point(24, 12);
             this.txtActivePlayersJSON.Name = "txtActivePlayersJSON";
-            this.txtActivePlayersJSON.Size = new System.Drawing.Size(697, 20);
+            this.txtActivePlayersJSON.Size = new System.Drawing.Size(1187, 20);
             this.txtActivePlayersJSON.TabIndex = 0;
             this.txtActivePlayersJSON.Text = "Active Players";
             // 
@@ -59,7 +59,7 @@
             // 
             this.txtNowPlayingJSON.Location = new System.Drawing.Point(24, 38);
             this.txtNowPlayingJSON.Name = "txtNowPlayingJSON";
-            this.txtNowPlayingJSON.Size = new System.Drawing.Size(697, 20);
+            this.txtNowPlayingJSON.Size = new System.Drawing.Size(1187, 20);
             this.txtNowPlayingJSON.TabIndex = 2;
             this.txtNowPlayingJSON.Text = "Now Playing";
             // 
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 213);
+            this.ClientSize = new System.Drawing.Size(1223, 213);
             this.Controls.Add(this.txtNowPlayingJSON);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtActivePlayersJSON);
