@@ -31,8 +31,6 @@ namespace Kodi_on_iMon
         public KodiGetProperties getProperties()
         {
             WebClient webClient = new WebClient();
-            //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
-            //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
             string json = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":1,\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}";
             string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
 

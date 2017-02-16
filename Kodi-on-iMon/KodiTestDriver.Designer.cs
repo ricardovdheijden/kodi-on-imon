@@ -34,6 +34,7 @@
             this.tmrRefreshRate = new System.Windows.Forms.Timer(this.components);
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.txtTime = new System.Windows.Forms.TextBox();
+            this.txtField = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtActivePlayersJSON
@@ -46,7 +47,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(24, 181);
+            this.txtEmail.Location = new System.Drawing.Point(24, 394);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(697, 20);
             this.txtEmail.TabIndex = 1;
@@ -70,11 +71,20 @@
             this.txtTime.Size = new System.Drawing.Size(540, 20);
             this.txtTime.TabIndex = 3;
             // 
+            // txtField
+            // 
+            this.txtField.Location = new System.Drawing.Point(24, 127);
+            this.txtField.Multiline = true;
+            this.txtField.Name = "txtField";
+            this.txtField.Size = new System.Drawing.Size(697, 139);
+            this.txtField.TabIndex = 4;
+            // 
             // KodiTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 213);
+            this.ClientSize = new System.Drawing.Size(739, 426);
+            this.Controls.Add(this.txtField);
             this.Controls.Add(this.txtTime);
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.txtEmail);
@@ -93,6 +103,6 @@
         private System.Windows.Forms.Timer tmrRefreshRate;
         private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.TextBox txtTime;
-
+        private System.Windows.Forms.TextBox txtField;
     }
 }

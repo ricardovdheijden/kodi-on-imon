@@ -28,6 +28,13 @@ namespace Kodi_on_iMon
             txtFileName.Text = itemResponse.result.item.file;
             txtTime.Text = propertiesResponse.result.time.ToString();
             txtEmail.Text = kodi.getEmail();
+
+            txtField.Text = "Title: " + itemResponse.result.item.title + Environment.NewLine
+                            + "Season: " + itemResponse.result.item.season+ Environment.NewLine
+                            + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
+                            + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
+                            + "Album: " + itemResponse.result.item.album + Environment.NewLine;
+
         }
     }
 }
