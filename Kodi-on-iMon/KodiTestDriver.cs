@@ -21,8 +21,12 @@ namespace Kodi_on_iMon
 
         private void tmrRefreshRate_Tick(object sender, EventArgs e)
         {
+            KodiGetItem itemResponse = kodi.getItem();
+            KodiGetProperties propertiesResponse = kodi.getProperties();
+
             txtActivePlayersJSON.Text = kodi.getActivePlayers();
-            txtNowPlayingJSON.Text = kodi.getTitle();
+            txtFileName.Text = itemResponse.result.item.file;
+            txtTime.Text = propertiesResponse.result.time.ToString();
             txtEmail.Text = kodi.getEmail();
         }
     }

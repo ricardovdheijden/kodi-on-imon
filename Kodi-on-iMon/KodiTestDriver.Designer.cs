@@ -32,14 +32,15 @@
             this.txtActivePlayersJSON = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.tmrRefreshRate = new System.Windows.Forms.Timer(this.components);
-            this.txtNowPlayingJSON = new System.Windows.Forms.TextBox();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.txtTime = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtActivePlayersJSON
             // 
             this.txtActivePlayersJSON.Location = new System.Drawing.Point(24, 12);
             this.txtActivePlayersJSON.Name = "txtActivePlayersJSON";
-            this.txtActivePlayersJSON.Size = new System.Drawing.Size(1187, 20);
+            this.txtActivePlayersJSON.Size = new System.Drawing.Size(697, 20);
             this.txtActivePlayersJSON.TabIndex = 0;
             this.txtActivePlayersJSON.Text = "Active Players";
             // 
@@ -55,20 +56,27 @@
             // 
             this.tmrRefreshRate.Tick += new System.EventHandler(this.tmrRefreshRate_Tick);
             // 
-            // txtNowPlayingJSON
+            // txtFileName
             // 
-            this.txtNowPlayingJSON.Location = new System.Drawing.Point(24, 38);
-            this.txtNowPlayingJSON.Name = "txtNowPlayingJSON";
-            this.txtNowPlayingJSON.Size = new System.Drawing.Size(1187, 20);
-            this.txtNowPlayingJSON.TabIndex = 2;
-            this.txtNowPlayingJSON.Text = "Now Playing";
+            this.txtFileName.Location = new System.Drawing.Point(181, 38);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(540, 20);
+            this.txtFileName.TabIndex = 2;
+            // 
+            // txtTime
+            // 
+            this.txtTime.Location = new System.Drawing.Point(181, 87);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(540, 20);
+            this.txtTime.TabIndex = 3;
             // 
             // KodiTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1223, 213);
-            this.Controls.Add(this.txtNowPlayingJSON);
+            this.ClientSize = new System.Drawing.Size(739, 213);
+            this.Controls.Add(this.txtTime);
+            this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtActivePlayersJSON);
             this.Name = "KodiTestDriver";
@@ -83,7 +91,8 @@
         private System.Windows.Forms.TextBox txtActivePlayersJSON;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Timer tmrRefreshRate;
-        private System.Windows.Forms.TextBox txtNowPlayingJSON;
+        private System.Windows.Forms.TextBox txtFileName;
+        private System.Windows.Forms.TextBox txtTime;
 
     }
 }

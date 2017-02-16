@@ -15,16 +15,30 @@ namespace Kodi_on_iMon
             
         }
         
-        public string getTitle()
+        public KodiGetItem getItem()
         {
             WebClient webClient = new WebClient();
             //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
             string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
             string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
 
-            KodiResponse kodiResponse = JsonConvert.DeserializeObject<KodiResponse>(response);
+            KodiGetItem kodiResponse = JsonConvert.DeserializeObject<KodiGetItem>(response);
 
-            return kodiResponse.result.item.file;
+            return kodiResponse;
+            //return response;
+        }
+
+        public KodiGetProperties getProperties()
+        {
+            WebClient webClient = new WebClient();
+            //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
+            //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
+            string json = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":1,\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}";
+            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
+
+            KodiGetProperties kodiResponse = JsonConvert.DeserializeObject<KodiGetProperties>(response);
+
+            return kodiResponse;
             //return response;
         }
 
@@ -62,14 +76,14 @@ namespace Kodi_on_iMon
         public IList<string> Roles { get; set; }
     }
 
-    public class KodiResponse
+    public class KodiGetItem
     {
         public string id { get; set; }
         public string jsonrpc { get; set; }
-        public KodiResult result { get; set; }
+        public KodiGetItemResult result { get; set; }
     }
 
-    public class KodiResult
+    public class KodiGetItemResult
     {
         public KodiItem item { get; set; }
     }
@@ -85,5 +99,33 @@ namespace Kodi_on_iMon
         public string title { get; set; }
         public int tvshowid { get; set; }
         public string type { get; set; }
+    }
+
+    public class KodiGetProperties
+    {
+        public string id { get; set; }
+        public string jsonrpc { get; set; }
+        public KodiGetPropertiesResult result { get; set; }
+    }
+
+    public class KodiGetPropertiesResult
+    {
+        public int playlistid { get; set; }
+        public int position { get; set; }
+        public int speed { get; set; }
+        public KodiTime time { get; set; }
+        public KodiTime totaltime { get; set; }
+    }
+
+    public class KodiTime
+    {
+        public int hours { get; set; }
+        public int milliseconds { get; set; }
+        public int minutes { get; set; }
+        public int seconds { get; set; }
+        public string ToString()
+        {
+            return hours+":"+minutes+":"+seconds;
+        }
     }
 }
