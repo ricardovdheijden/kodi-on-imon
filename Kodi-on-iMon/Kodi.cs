@@ -12,9 +12,9 @@ namespace Kodi_on_iMon
     {
         public Kodi()
         {
-            
+
         }
-        
+
         public KodiGetItem getItem()
         {
             WebClient webClient = new WebClient();
@@ -40,49 +40,37 @@ namespace Kodi_on_iMon
             //return response;
         }
 
-        public string getActivePlayers()
+        public KodiActivePlayers getActivePlayers()
         {
-            /*WebClient webClient = new WebClient();
-           dynamic result = JsonValue.Parse(webClient.DownloadString("https://api.foursquare.com/v2/users/self?oauth_token=XXXXXXX"));
-           Console.WriteLine(result.response.user.firstName);
-            * http://localhost:8080/jsonrpc
-           */
-
             WebClient webClient = new WebClient();
             //string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Application.GetProperties\", \"params\": {\"properties\": [\"volume\"]}, \"id\": 1}";
             string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetActivePlayers\", \"id\": 1}";
             string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
 
-            return response;
-        }
+            KodiActivePlayers kodiResponse = JsonConvert.DeserializeObject<KodiActivePlayers>(response);
 
-        public string getEmail()
-        {
-            string json2 = "{'Email': 'james@example.com','Active': true,'CreatedDate': '2013-01-20T00:00:00Z','Roles': ['User','Admin']}";
-            Account account = JsonConvert.DeserializeObject<Account>(json2);
-
-            return account.Email;
+            return kodiResponse;
         }
     }
 
-    //For test purposes: the json converter expects an object that matches with the json
-    public class Account
+    public class KodiActivePlayers
     {
-        public string Email { get; set; }
-        public bool Active { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public IList<string> Roles { get; set; }
+        public int id { get; set; }
+        public string jsonrpc { get; set; }
+        public KodiResult[] result { get; set; }
     }
 
     public class KodiGetItem
     {
         public string id { get; set; }
         public string jsonrpc { get; set; }
-        public KodiGetItemResult result { get; set; }
+        public KodiResult result { get; set; }
     }
 
-    public class KodiGetItemResult
+    public class KodiResult
     {
+        public int playerid { get; set; }
+        public string type { get; set; }
         public KodiItem item { get; set; }
     }
 

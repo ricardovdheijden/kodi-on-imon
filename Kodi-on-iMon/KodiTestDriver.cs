@@ -23,11 +23,12 @@ namespace Kodi_on_iMon
         {
             KodiGetItem itemResponse = kodi.getItem();
             KodiGetProperties propertiesResponse = kodi.getProperties();
+            KodiActivePlayers activePlayers = kodi.getActivePlayers();
 
-            txtActivePlayersJSON.Text = kodi.getActivePlayers();
+            txtActivePlayersJSON.Text = activePlayers.result[0].type;
+
             txtFileName.Text = itemResponse.result.item.file;
             txtTime.Text = propertiesResponse.result.time.ToString();
-            txtEmail.Text = kodi.getEmail();
 
             txtField.Text = "Title: " + itemResponse.result.item.title + Environment.NewLine
                             + "Season: " + itemResponse.result.item.season+ Environment.NewLine

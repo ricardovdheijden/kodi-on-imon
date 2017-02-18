@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.txtActivePlayersJSON = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.tmrRefreshRate = new System.Windows.Forms.Timer(this.components);
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.txtTime = new System.Windows.Forms.TextBox();
@@ -44,14 +43,6 @@
             this.txtActivePlayersJSON.Size = new System.Drawing.Size(697, 20);
             this.txtActivePlayersJSON.TabIndex = 0;
             this.txtActivePlayersJSON.Text = "Active Players";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(24, 394);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(697, 20);
-            this.txtEmail.TabIndex = 1;
-            this.txtEmail.Text = "Email: ";
             // 
             // tmrRefreshRate
             // 
@@ -87,7 +78,6 @@
             this.Controls.Add(this.txtField);
             this.Controls.Add(this.txtTime);
             this.Controls.Add(this.txtFileName);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtActivePlayersJSON);
             this.Name = "KodiTestDriver";
             this.Text = "KodiTestDriver";
@@ -99,7 +89,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtActivePlayersJSON;
-        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Timer tmrRefreshRate;
         private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.TextBox txtTime;
