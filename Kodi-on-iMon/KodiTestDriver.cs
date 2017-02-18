@@ -21,20 +21,37 @@ namespace Kodi_on_iMon
 
         private void tmrRefreshRate_Tick(object sender, EventArgs e)
         {
+            KodiActivePlayers activePlayers = kodi.getActivePlayers();
             KodiGetItem itemResponse = kodi.getItem();
             KodiGetProperties propertiesResponse = kodi.getProperties();
-            KodiActivePlayers activePlayers = kodi.getActivePlayers();
 
-            txtActivePlayersJSON.Text = activePlayers.result[0].type;
 
-            txtFileName.Text = itemResponse.result.item.file;
-            txtTime.Text = propertiesResponse.result.time.ToString();
+            if (activePlayers.result.Length > 0)
+            {
+                txtActivePlayersJSON.Text = activePlayers.result[0].type;
+                if (activePlayers.result[0].type == "video")
+                {
+                    txtFileName.Text = itemResponse.result.item.file;
+                    txtTime.Text = propertiesResponse.result.time.ToString();
 
-            txtField.Text = "Title: " + itemResponse.result.item.title + Environment.NewLine
-                            + "Season: " + itemResponse.result.item.season+ Environment.NewLine
-                            + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
-                            + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
-                            + "Album: " + itemResponse.result.item.album + Environment.NewLine;
+                    txtField.Text = "Title: " + itemResponse.result.item.title + Environment.NewLine
+                                    + "Season: " + itemResponse.result.item.season + Environment.NewLine
+                                    + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
+                                    + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
+                                    + "Album: " + itemResponse.result.item.album + Environment.NewLine;
+                }
+                else if (activePlayers.result[0].type == "audio")
+                {
+                    txtActivePlayersJSON.Text = activePlayers.result[0].type + " woohoo";
+                }
+                else if (activePlayers.result[0].type == "picture")
+                {
+                    txtActivePlayersJSON.Text = activePlayers.result[0].type + " woohoo2";
+                }
+                
+            }
+
+            
 
         }
     }
