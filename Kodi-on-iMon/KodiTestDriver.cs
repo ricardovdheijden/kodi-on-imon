@@ -24,45 +24,55 @@ namespace Kodi_on_iMon
             KodiActivePlayers activePlayers = kodi.getActivePlayers();
             KodiGetProperties propertiesResponse = kodi.getProperties();
 
-
-            if (activePlayers.result.Length > 0)
+            if (activePlayers.error != null && activePlayers.error.Length > 0)
             {
-                txtActivePlayersJSON.Text = activePlayers.result[0].type;
-                if (activePlayers.result[0].type == "video")
-                {
-                    KodiResponse itemResponse = kodi.getVideoItem();
-                    txtFileName.Text = itemResponse.result.item.file;
-                    txtTime.Text = propertiesResponse.result.time.ToString();
-
-                    txtField.Text = "Title: " + itemResponse.result.item.title + Environment.NewLine
-                                    + "Season: " + itemResponse.result.item.season + Environment.NewLine
-                                    + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
-                                    + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
-                                    + "Album: " + itemResponse.result.item.album + Environment.NewLine
-                                    + "Label: " + itemResponse.result.item.label;
-                }
-                else if (activePlayers.result[0].type == "audio")
-                {
-                    KodiResponse itemResponse = kodi.getAudioItem();
-                    txtFileName.Text = itemResponse.result.item.file;
-                    //txtTime.Text = propertiesResponse.result.time.ToString();
-
-                    //txtField.Text = kodi.getAudioItemJson();
-                    txtField.Text = "Title: " + itemResponse.result.item.title;
-                }
-                else if (activePlayers.result[0].type == "picture")
-                {
-                    KodiResponse itemResponse = kodi.getPictureItem();
-                    txtFileName.Text = itemResponse.result.item.file;
-
-                    //txtField.Text = kodi.getPictureItemJson();
-                    txtField.Text = "Label: " + itemResponse.result.item.label;
-                }
-                
+                txtActivePlayers.Text = activePlayers.error;
+                tmrRefreshRate.Enabled = false;
+                btnConnect.Enabled = true;
             }
+            else
+            {
+                if (activePlayers.result.Length > 0)
+                {
+                    txtActivePlayers.Text = activePlayers.result[0].type;
+                    if (activePlayers.result[0].type == "video")
+                    {
+                        KodiResponse itemResponse = kodi.getVideoItem();
+                        txtTime.Text = propertiesResponse.result.time.ToString();
+                        txtField.Text = "File Name: " + itemResponse.result.item.file + Environment.NewLine
+                                        + "Title: " + itemResponse.result.item.title + Environment.NewLine
+                                        + "Season: " + itemResponse.result.item.season + Environment.NewLine
+                                        + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
+                                        + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
+                                        + "Album: " + itemResponse.result.item.album + Environment.NewLine
+                                        + "Label: " + itemResponse.result.item.label;
+                    }
+                    else if (activePlayers.result[0].type == "audio")
+                    {
+                        KodiResponse itemResponse = kodi.getAudioItem();
+                        //txtTime.Text = propertiesResponse.result.time.ToString();
 
-            
+                        //txtField.Text = kodi.getAudioItemJson();
+                        txtField.Text = "File Name: " + itemResponse.result.item.file + Environment.NewLine
+                                        + "Title: " + itemResponse.result.item.title;
+                    }
+                    else if (activePlayers.result[0].type == "picture")
+                    {
+                        KodiResponse itemResponse = kodi.getPictureItem();
 
+                        //txtField.Text = kodi.getPictureItemJson();
+                        txtField.Text = "File Name: " + itemResponse.result.item.file + Environment.NewLine
+                                        + "Label: " + itemResponse.result.item.label;
+                    }
+                }
+            }
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            btnConnect.Enabled = false;
+            txtActivePlayers.Text = "";
+            tmrRefreshRate.Enabled = true;
         }
     }
 }

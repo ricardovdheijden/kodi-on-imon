@@ -71,8 +71,16 @@ namespace Kodi_on_iMon
         public string jsonRpcPost(string input)
         {
             WebClient webClient = new WebClient();
-            string response;
-            response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", input);
+            string response = "";
+            try
+            {
+                response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", input);
+            }
+            catch (System.Net.WebException) 
+            {
+                response = "{\"error\": \"connectionError\"}";
+            }
+            
             return response;
         }
     }
@@ -81,6 +89,7 @@ namespace Kodi_on_iMon
      */
     public class KodiActivePlayers
     {
+        public string error { get; set; }
         public string id { get; set; }
         public string jsonrpc { get; set; }
         public KodiResult[] result { get; set; }
@@ -88,6 +97,7 @@ namespace Kodi_on_iMon
 
     public class KodiResponse
     {
+        public string error { get; set; }
         public string id { get; set; }
         public string jsonrpc { get; set; }
         public KodiResult result { get; set; }
@@ -95,6 +105,7 @@ namespace Kodi_on_iMon
 
     public class KodiGetProperties
     {
+        public string error { get; set; }
         public string id { get; set; }
         public string jsonrpc { get; set; }
         public KodiResult result { get; set; }
