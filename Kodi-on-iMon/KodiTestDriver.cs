@@ -22,7 +22,6 @@ namespace Kodi_on_iMon
         private void tmrRefreshRate_Tick(object sender, EventArgs e)
         {
             KodiActivePlayers activePlayers = kodi.getActivePlayers();
-            KodiGetItem itemResponse = kodi.getItem();
             KodiGetProperties propertiesResponse = kodi.getProperties();
 
 
@@ -31,6 +30,7 @@ namespace Kodi_on_iMon
                 txtActivePlayersJSON.Text = activePlayers.result[0].type;
                 if (activePlayers.result[0].type == "video")
                 {
+                    KodiResponse itemResponse = kodi.getVideoItem();
                     txtFileName.Text = itemResponse.result.item.file;
                     txtTime.Text = propertiesResponse.result.time.ToString();
 
@@ -38,15 +38,25 @@ namespace Kodi_on_iMon
                                     + "Season: " + itemResponse.result.item.season + Environment.NewLine
                                     + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
                                     + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
-                                    + "Album: " + itemResponse.result.item.album + Environment.NewLine;
+                                    + "Album: " + itemResponse.result.item.album + Environment.NewLine
+                                    + "Label: " + itemResponse.result.item.label;
                 }
                 else if (activePlayers.result[0].type == "audio")
                 {
-                    txtActivePlayersJSON.Text = activePlayers.result[0].type + " woohoo";
+                    KodiResponse itemResponse = kodi.getAudioItem();
+                    txtFileName.Text = itemResponse.result.item.file;
+                    //txtTime.Text = propertiesResponse.result.time.ToString();
+
+                    //txtField.Text = kodi.getAudioItemJson();
+                    txtField.Text = "Title: " + itemResponse.result.item.title;
                 }
                 else if (activePlayers.result[0].type == "picture")
                 {
-                    txtActivePlayersJSON.Text = activePlayers.result[0].type + " woohoo2";
+                    KodiResponse itemResponse = kodi.getPictureItem();
+                    txtFileName.Text = itemResponse.result.item.file;
+
+                    //txtField.Text = kodi.getPictureItemJson();
+                    txtField.Text = "Label: " + itemResponse.result.item.label;
                 }
                 
             }
