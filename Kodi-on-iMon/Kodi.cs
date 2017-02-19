@@ -13,45 +13,40 @@ namespace Kodi_on_iMon
         private string jsonVideoRequest = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
         private string jsonAudioRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetItem\",\"params\":[0,[\"title\",\"file\",\"artist\",\"year\",\"album\",\"track\",\"duration\"]],\"id\": \"AudioGetItem\"}";
         private string jsonPictureRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetItem\",\"params\":[2,[\"file\"]],\"id\": \"PictureGetItem\"}";
+        private string jsonPropertiesRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":1,\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}";
+        private string jsonActivePlayersRequest = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetActivePlayers\", \"id\": 1}";
 
         public KodiResponse getVideoItem()
         {
-            WebClient webClient = new WebClient();
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", jsonVideoRequest);
+            string response = jsonRpcPost(jsonVideoRequest);
             KodiResponse kodiResponse = JsonConvert.DeserializeObject<KodiResponse>(response);
             return kodiResponse;
         }
 
         public KodiResponse getAudioItem()
         {
-            WebClient webClient = new WebClient();
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", jsonAudioRequest);
+            string response = jsonRpcPost(jsonAudioRequest);
             KodiResponse kodiResponse = JsonConvert.DeserializeObject<KodiResponse>(response);
             return kodiResponse;
         }
 
         public KodiResponse getPictureItem()
         {
-            WebClient webClient = new WebClient();
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", jsonPictureRequest);
+            string response = jsonRpcPost(jsonPictureRequest);
             KodiResponse kodiResponse = JsonConvert.DeserializeObject<KodiResponse>(response);
             return kodiResponse;
         }
 
         public KodiGetProperties getProperties()
         {
-            WebClient webClient = new WebClient();
-            string json = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":1,\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}";
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
+            string response = jsonRpcPost(jsonPropertiesRequest);
             KodiGetProperties kodiResponse = JsonConvert.DeserializeObject<KodiGetProperties>(response);
             return kodiResponse;
         }
 
         public KodiActivePlayers getActivePlayers()
         {
-            WebClient webClient = new WebClient();
-            string json = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetActivePlayers\", \"id\": 1}";
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", json);
+            string response = jsonRpcPost(jsonActivePlayersRequest);
             KodiActivePlayers kodiResponse = JsonConvert.DeserializeObject<KodiActivePlayers>(response);
             return kodiResponse;
         }
@@ -59,22 +54,25 @@ namespace Kodi_on_iMon
         // get methods with json as output
         public string getVideoItemJson()
         {
-            WebClient webClient = new WebClient();
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", jsonVideoRequest);
-            return response;
+            return jsonRpcPost(jsonVideoRequest);
         }
 
         public string getAudioItemJson()
         {
-            WebClient webClient = new WebClient();
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", jsonAudioRequest);
-            return response;
+            return jsonRpcPost(jsonAudioRequest);
         }
 
         public string getPictureItemJson()
         {
+            return jsonRpcPost(jsonPictureRequest);
+        }
+
+        // method that connects with jsonrpc of Kodi
+        public string jsonRpcPost(string input)
+        {
             WebClient webClient = new WebClient();
-            string response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", jsonPictureRequest);
+            string response;
+            response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", input);
             return response;
         }
     }
@@ -143,7 +141,7 @@ namespace Kodi_on_iMon
         public int seconds { get; set; }
         public string ToString()
         {
-            string result = hours + ":";//hours + ":" + minutes + ":" + seconds;
+            string result = hours + ":";
 
             if (minutes < 10) result += "0" + minutes;
             else result += minutes;
