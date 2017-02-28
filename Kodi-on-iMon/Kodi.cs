@@ -10,7 +10,7 @@ namespace Kodi_on_iMon
 {
     public class Kodi
     {
-        private string jsonVideoRequest = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
+        private string jsonVideoRequest = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\", \"year\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
         private string jsonAudioRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetItem\",\"params\":[0,[\"title\",\"file\",\"artist\",\"year\",\"album\",\"track\",\"duration\"]],\"id\": \"AudioGetItem\"}";
         private string jsonPictureRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetItem\",\"params\":[2,[\"file\"]],\"id\": \"PictureGetItem\"}";
         private string jsonPropertiesRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":1,\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}";
@@ -75,6 +75,7 @@ namespace Kodi_on_iMon
             try
             {
                 response = webClient.UploadString("http://localhost:8080/jsonrpc", "POST", input);
+                //response = webClient.UploadString("http://192.168.1.11:8080/jsonrpc", "POST", input);
             }
             catch (System.Net.WebException) 
             {

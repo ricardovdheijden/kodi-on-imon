@@ -45,6 +45,9 @@ namespace Kodi_on_iMon
                                         + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
                                         + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
                                         + "Album: " + itemResponse.result.item.album + Environment.NewLine
+                                        + "Artist: " + itemResponse.result.item.artist[0] + Environment.NewLine //todo: write out all artists
+                                        + "Year: " + itemResponse.result.item.year + Environment.NewLine
+                                        + "Type: " + itemResponse.result.item.type + Environment.NewLine
                                         + "Label: " + itemResponse.result.item.label;
                     }
                     else if (activePlayers.result[0].type == "audio")
