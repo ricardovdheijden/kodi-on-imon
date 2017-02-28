@@ -37,6 +37,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.txtToDisplay = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtActivePlayers
@@ -103,11 +105,29 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // txtToDisplay
+            // 
+            this.txtToDisplay.Location = new System.Drawing.Point(92, 212);
+            this.txtToDisplay.Name = "txtToDisplay";
+            this.txtToDisplay.Size = new System.Drawing.Size(383, 20);
+            this.txtToDisplay.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 215);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "To Display";
+            // 
             // KodiTestDriver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 218);
+            this.ClientSize = new System.Drawing.Size(487, 243);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtToDisplay);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -132,5 +152,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.TextBox txtToDisplay;
+        private System.Windows.Forms.Label label4;
     }
 }

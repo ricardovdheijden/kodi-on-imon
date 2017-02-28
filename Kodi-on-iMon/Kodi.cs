@@ -143,6 +143,33 @@ namespace Kodi_on_iMon
         public int tvshowid { get; set; }
         public string type { get; set; }
         public int year { get; set; }
+        public string movieToString()
+        {
+            string result = title + " (" + year + ")";
+            return result;
+        }
+        public string episodeToString()
+        {
+            string result = showtitle + " - S";
+            if (season < 10) result += "0" + season;
+            else result += season;
+            result += "E";
+            if (episode < 10) result += "0" + episode;
+            else result += episode;
+            result += " - " + title;
+            return result;
+        }
+        public string musicvideoToString()
+        {
+            string result = "";
+            for (int i = 0; i < artist.Length; i++)
+            {
+                result += artist[i];
+                if (i < artist.Length - 1) result += ", ";
+            }
+            result += " - " + title;
+            return result;
+        }
     }
 
     public class KodiTime

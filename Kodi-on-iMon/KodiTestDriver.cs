@@ -45,10 +45,13 @@ namespace Kodi_on_iMon
                                         + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
                                         + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
                                         + "Album: " + itemResponse.result.item.album + Environment.NewLine
-                                        + "Artist: " + itemResponse.result.item.artist[0] + Environment.NewLine //todo: write out all artists
+                                        /*+ "Artist: " + itemResponse.result.item.artist[0] + Environment.NewLine //todo: write out all artists*/
                                         + "Year: " + itemResponse.result.item.year + Environment.NewLine
                                         + "Type: " + itemResponse.result.item.type + Environment.NewLine
                                         + "Label: " + itemResponse.result.item.label;
+                        if (itemResponse.result.item.type == "movie") txtToDisplay.Text = itemResponse.result.item.movieToString();
+                        else if (itemResponse.result.item.type == "episode") txtToDisplay.Text = itemResponse.result.item.episodeToString();
+                        else if (itemResponse.result.item.type == "musicvideo") txtToDisplay.Text = itemResponse.result.item.musicvideoToString();
                     }
                     else if (activePlayers.result[0].type == "audio")
                     {
