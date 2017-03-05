@@ -64,7 +64,7 @@
             this.txtField.Location = new System.Drawing.Point(92, 58);
             this.txtField.Multiline = true;
             this.txtField.Name = "txtField";
-            this.txtField.Size = new System.Drawing.Size(383, 148);
+            this.txtField.Size = new System.Drawing.Size(383, 208);
             this.txtField.TabIndex = 4;
             // 
             // label1
@@ -107,7 +107,7 @@
             // 
             // txtToDisplay
             // 
-            this.txtToDisplay.Location = new System.Drawing.Point(92, 212);
+            this.txtToDisplay.Location = new System.Drawing.Point(92, 272);
             this.txtToDisplay.Name = "txtToDisplay";
             this.txtToDisplay.Size = new System.Drawing.Size(383, 20);
             this.txtToDisplay.TabIndex = 9;
@@ -115,7 +115,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 215);
+            this.label4.Location = new System.Drawing.Point(12, 275);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 10;
@@ -125,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 243);
+            this.ClientSize = new System.Drawing.Size(487, 304);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtToDisplay);
             this.Controls.Add(this.btnConnect);

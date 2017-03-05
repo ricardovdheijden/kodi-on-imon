@@ -13,8 +13,8 @@ namespace Kodi_on_iMon
         private string jsonVideoRequest = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"album\", \"artist\", \"season\", \"episode\", \"duration\", \"showtitle\", \"tvshowid\", \"file\", \"year\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
         private string jsonAudioRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetItem\",\"params\":[0,[\"title\",\"file\",\"artist\",\"year\",\"album\",\"track\",\"duration\"]],\"id\": \"AudioGetItem\"}";
         private string jsonPictureRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetItem\",\"params\":[2,[\"file\"]],\"id\": \"PictureGetItem\"}";
-        private string jsonPropertiesRequest = "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":1,\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}";
         private string jsonActivePlayersRequest = "{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetActivePlayers\", \"id\": 1}";
+        private string jsonPropertiesRequest(int playerid) { return "{\"jsonrpc\":\"2.0\",\"method\":\"Player.GetProperties\",\"id\":1,\"params\":{\"playerid\":" + playerid + ",\"properties\":[\"playlistid\",\"speed\",\"position\",\"totaltime\",\"time\"]}}"; }
 
         public KodiResponse getVideoItem()
         {
@@ -37,9 +37,9 @@ namespace Kodi_on_iMon
             return kodiResponse;
         }
 
-        public KodiGetProperties getProperties()
+        public KodiGetProperties getProperties(int playerid)
         {
-            string response = jsonRpcPost(jsonPropertiesRequest);
+            string response = jsonRpcPost(jsonPropertiesRequest(playerid));
             KodiGetProperties kodiResponse = JsonConvert.DeserializeObject<KodiGetProperties>(response);
             return kodiResponse;
         }
@@ -65,6 +65,11 @@ namespace Kodi_on_iMon
         public string getPictureItemJson()
         {
             return jsonRpcPost(jsonPictureRequest);
+        }
+
+        public string getPropertiesJson(int playerid)
+        {
+            return jsonRpcPost(jsonPropertiesRequest(playerid));
         }
 
         // method that connects with jsonrpc of Kodi
@@ -169,6 +174,21 @@ namespace Kodi_on_iMon
             }
             result += " - " + title;
             return result;
+        }
+        public string songToString()
+        {
+            string result = "";
+            for (int i = 0; i < artist.Length; i++)
+            {
+                result += artist[i];
+                if (i < artist.Length - 1) result += ", ";
+            }
+            result += " - " + title;
+            return result;
+        }
+        public string unknownTypeToString()
+        {
+            return label;
         }
     }
 

@@ -22,7 +22,7 @@ namespace Kodi_on_iMon
         private void tmrRefreshRate_Tick(object sender, EventArgs e)
         {
             KodiActivePlayers activePlayers = kodi.getActivePlayers();
-            KodiGetProperties propertiesResponse = kodi.getProperties();
+            
 
             if (activePlayers.error != null && activePlayers.error.Length > 0)
             {
@@ -34,6 +34,7 @@ namespace Kodi_on_iMon
             {
                 if (activePlayers.result.Length > 0)
                 {
+                    KodiGetProperties propertiesResponse = kodi.getProperties(activePlayers.result[0].playerid); //todo: make it possible to handle multiple players
                     txtActivePlayers.Text = activePlayers.result[0].type;
                     if (activePlayers.result[0].type == "video")
                     {
@@ -45,22 +46,41 @@ namespace Kodi_on_iMon
                                         + "Episode: " + itemResponse.result.item.episode + Environment.NewLine
                                         + "Show Title: " + itemResponse.result.item.showtitle + Environment.NewLine
                                         + "Album: " + itemResponse.result.item.album + Environment.NewLine
-                                        /*+ "Artist: " + itemResponse.result.item.artist[0] + Environment.NewLine //todo: write out all artists*/
                                         + "Year: " + itemResponse.result.item.year + Environment.NewLine
                                         + "Type: " + itemResponse.result.item.type + Environment.NewLine
-                                        + "Label: " + itemResponse.result.item.label;
+                                        + "Label: " + itemResponse.result.item.label + Environment.NewLine
+                                        + "Artist: ";
+                        foreach (String artist in itemResponse.result.item.artist)
+                        {
+                            
+                            if (artist != itemResponse.result.item.artist.Last()) txtField.Text += artist + " -- ";
+                            else txtField.Text += artist;
+                        }
                         if (itemResponse.result.item.type == "movie") txtToDisplay.Text = itemResponse.result.item.movieToString();
                         else if (itemResponse.result.item.type == "episode") txtToDisplay.Text = itemResponse.result.item.episodeToString();
                         else if (itemResponse.result.item.type == "musicvideo") txtToDisplay.Text = itemResponse.result.item.musicvideoToString();
+                        else if (itemResponse.result.item.type == "unknown") txtToDisplay.Text = itemResponse.result.item.unknownTypeToString();
                     }
                     else if (activePlayers.result[0].type == "audio")
                     {
                         KodiResponse itemResponse = kodi.getAudioItem();
-                        //txtTime.Text = propertiesResponse.result.time.ToString();
+                        txtTime.Text = propertiesResponse.result.time.ToString();
 
                         //txtField.Text = kodi.getAudioItemJson();
                         txtField.Text = "File Name: " + itemResponse.result.item.file + Environment.NewLine
-                                        + "Title: " + itemResponse.result.item.title;
+                                        + "Title: " + itemResponse.result.item.title + Environment.NewLine
+                                        + "Album: " + itemResponse.result.item.album + Environment.NewLine
+                                        + "Year: " + itemResponse.result.item.year + Environment.NewLine
+                                        + "Type: " + itemResponse.result.item.type + Environment.NewLine
+                                        + "Label: " + itemResponse.result.item.label + Environment.NewLine
+                                        + "Artist: ";
+                        foreach (String artist in itemResponse.result.item.artist)
+                        {
+
+                            if (artist != itemResponse.result.item.artist.Last()) txtField.Text += artist + " -- ";
+                            else txtField.Text += artist;
+                        }
+                        if (itemResponse.result.item.type == "song") txtToDisplay.Text = itemResponse.result.item.songToString();
                     }
                     else if (activePlayers.result[0].type == "picture")
                     {
