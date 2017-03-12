@@ -40,6 +40,10 @@ namespace Kodi_on_iMon
                     {
                         Application.Run(new iMonMenu());
                     }
+                    else if (args[i] == "kodi")
+                    {
+                        Application.Run(new KodiMediaInfo());
+                    }
                     else if (args[i] == "imon-testdriver")
                     {
                         Application.Run(new iMonTestDriver());

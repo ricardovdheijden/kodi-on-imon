@@ -91,13 +91,12 @@ namespace Kodi_on_iMon
                 {
                     int playerid = getPlayerId(activePlayers);
                     KodiGetProperties propertiesResponse = kodi.getProperties(playerid);
-                    //txtActivePlayers.Text = activePlayers.result[0].type;
                     for (int i = 0; i < activePlayers.result.Length; i++)
                     {
                         if (activePlayers.result[i].type == "video" && activePlayers.result[i].playerid == playerid)
                         {
                             KodiResponse itemResponse = kodi.getVideoItem(playerid);
-                            line2 = propertiesResponse.result.time.ToString();
+                            line2 = propertiesResponse.result.time.ToString() + "  " + propertiesResponse.result.totaltime.ToString();
                             if (itemResponse.result.item.type == "movie") line1 = itemResponse.result.item.movieToString();
                             else if (itemResponse.result.item.type == "episode") line1 = itemResponse.result.item.episodeToString();
                             else if (itemResponse.result.item.type == "musicvideo") line1 = itemResponse.result.item.musicvideoToString();
@@ -106,7 +105,7 @@ namespace Kodi_on_iMon
                         else if (activePlayers.result[i].type == "audio" && activePlayers.result[i].playerid == playerid)
                         {
                             KodiResponse itemResponse = kodi.getAudioItem(playerid);
-                            line2 = propertiesResponse.result.time.ToString();
+                            line2 = propertiesResponse.result.time.ToString() + "  " + propertiesResponse.result.totaltime.ToString();
                             if (itemResponse.result.item.type == "song") line1 = itemResponse.result.item.songToString();
                         }
                         else if (activePlayers.result[i].type == "picture" && activePlayers.result[i].playerid == playerid)
