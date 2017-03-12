@@ -125,6 +125,9 @@
     <EmbeddedResource Include="iMonTestDriver.resx">
       <DependentUpon>iMonTestDriver.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KodiMediaInfo.resx">
+      <DependentUpon>KodiMediaInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KodiTestDriver.resx">
       <DependentUpon>KodiTestDriver.cs</DependentUpon>
     </EmbeddedResource>

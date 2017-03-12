@@ -41,7 +41,7 @@
             this.lblLine2.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblLine2.Font = new System.Drawing.Font("Courier New", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLine2.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lblLine2.Location = new System.Drawing.Point(11, 168);
+            this.lblLine2.Location = new System.Drawing.Point(12, 39);
             this.lblLine2.Name = "lblLine2";
             this.lblLine2.Size = new System.Drawing.Size(270, 30);
             this.lblLine2.TabIndex = 6;
@@ -51,7 +51,7 @@
             this.lblLine1.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblLine1.Font = new System.Drawing.Font("Courier New", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLine1.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lblLine1.Location = new System.Drawing.Point(11, 138);
+            this.lblLine1.Location = new System.Drawing.Point(12, 9);
             this.lblLine1.Name = "lblLine1";
             this.lblLine1.Size = new System.Drawing.Size(270, 30);
             this.lblLine1.TabIndex = 5;
@@ -72,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 321);
+            this.ClientSize = new System.Drawing.Size(294, 79);
             this.Controls.Add(this.lblLine2);
             this.Controls.Add(this.lblLine1);
             this.Name = "iMonIdle";

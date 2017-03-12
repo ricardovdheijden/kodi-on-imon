@@ -11,9 +11,120 @@ namespace Kodi_on_iMon
 {
     public partial class KodiMediaInfo : Form
     {
+        iMon imon;
+        Kodi kodi;
+        int refreshRate = 200;
+        int scrollDelay = 5000;
+
         public KodiMediaInfo()
         {
             InitializeComponent();
+
+            this.ShowInTaskbar = false;
+            notifyIcon.Visible = true;
+            btnConnect.Enabled = false;
+            this.WindowState = FormWindowState.Minimized;
+
+            imon = new iMon();
+            imon.initialise();
+            imon.setRefreshRate(refreshRate);
+            imon.setScrollDelay(scrollDelay);
+            imon.setText("Connecting with", "Kodi...");
+
+            kodi = new Kodi();
+
+            tmrFormRefreshRate.Interval = refreshRate;
+            tmrFormRefreshRate.Enabled = true;
+            tmrKodiRefreshRate.Enabled = true;
+        }
+
+        private int getPlayerId(KodiActivePlayers activePlayers)
+        {
+            int playerid = 0;
+            int foundType = 3; //1 = audio; 2 = video; 3 = picture
+            for (int i = 0; i < activePlayers.result.Length; i++)
+            {
+                if (activePlayers.result[i].type == "audio") { playerid = activePlayers.result[i].playerid; foundType = 1; }
+                else if (activePlayers.result[i].type == "video" && foundType >= 2) { playerid = activePlayers.result[i].playerid; foundType = 2; }
+                else if (activePlayers.result[i].type == "picture" && foundType >= 3) { playerid = activePlayers.result[i].playerid; foundType = 3; }
+            }
+            return playerid;
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+            }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void tmrFormRefreshRate_Tick(object sender, EventArgs e)
+        {
+            lblLine1.Text = imon.getVFDText(0);
+            lblLine2.Text = imon.getVFDText(1);
+        }
+
+        private void tmrKodiRefreshRate_Tick(object sender, EventArgs e)
+        {
+            KodiActivePlayers activePlayers = kodi.getActivePlayers();
+            string line1 = "";
+            string line2 = "";
+
+            if (activePlayers.error != null && activePlayers.error.Length > 0)
+            {
+                line1 = activePlayers.error;
+                tmrKodiRefreshRate.Enabled = false;
+                btnConnect.Enabled = true;
+            }
+            else
+            {
+                if (activePlayers.result.Length > 0)
+                {
+                    int playerid = getPlayerId(activePlayers);
+                    KodiGetProperties propertiesResponse = kodi.getProperties(playerid);
+                    //txtActivePlayers.Text = activePlayers.result[0].type;
+                    for (int i = 0; i < activePlayers.result.Length; i++)
+                    {
+                        if (activePlayers.result[i].type == "video" && activePlayers.result[i].playerid == playerid)
+                        {
+                            KodiResponse itemResponse = kodi.getVideoItem(playerid);
+                            line2 = propertiesResponse.result.time.ToString();
+                            if (itemResponse.result.item.type == "movie") line1 = itemResponse.result.item.movieToString();
+                            else if (itemResponse.result.item.type == "episode") line1 = itemResponse.result.item.episodeToString();
+                            else if (itemResponse.result.item.type == "musicvideo") line1 = itemResponse.result.item.musicvideoToString();
+                            else if (itemResponse.result.item.type == "unknown") line1 = itemResponse.result.item.unknownTypeToString();
+                        }
+                        else if (activePlayers.result[i].type == "audio" && activePlayers.result[i].playerid == playerid)
+                        {
+                            KodiResponse itemResponse = kodi.getAudioItem(playerid);
+                            line2 = propertiesResponse.result.time.ToString();
+                            if (itemResponse.result.item.type == "song") line1 = itemResponse.result.item.songToString();
+                        }
+                        else if (activePlayers.result[i].type == "picture" && activePlayers.result[i].playerid == playerid)
+                        {
+                            KodiResponse itemResponse = kodi.getPictureItem(playerid);
+                            if (itemResponse.result.item.type == "picture") line1 = itemResponse.result.item.pictureToString();
+                        }
+                    }
+                }
+            }
+            imon.setText(line1, line2);
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            btnConnect.Enabled = false;
+            imon.setText("Connecting with","Kodi...");
+            tmrKodiRefreshRate.Enabled = true;
         }
     }
 }
