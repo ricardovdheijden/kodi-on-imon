@@ -13,8 +13,9 @@ namespace Kodi_on_iMon
     {
         iMon imon;
         Kodi kodi;
-        int refreshRate = 200;
-        int scrollDelay = 5000;
+        int imonRefreshRate = 250;
+        int kodiRefreshRate = 500;
+        int scrollDelay = 2500;
 
         public KodiMediaInfo()
         {
@@ -27,13 +28,14 @@ namespace Kodi_on_iMon
 
             imon = new iMon();
             imon.initialise();
-            imon.setRefreshRate(refreshRate);
+            imon.setRefreshRate(imonRefreshRate);
             imon.setScrollDelay(scrollDelay);
             imon.setText("Connecting with", "Kodi...");
 
             kodi = new Kodi();
 
-            tmrFormRefreshRate.Interval = refreshRate;
+            tmrFormRefreshRate.Interval = imonRefreshRate;
+            tmrKodiRefreshRate.Interval = kodiRefreshRate;
             tmrFormRefreshRate.Enabled = true;
             tmrKodiRefreshRate.Enabled = true;
         }
@@ -76,8 +78,8 @@ namespace Kodi_on_iMon
         private void tmrKodiRefreshRate_Tick(object sender, EventArgs e)
         {
             KodiActivePlayers activePlayers = kodi.getActivePlayers();
-            string line1 = "";
-            string line2 = "";
+            string line1 = " ";
+            string line2 = " ";
 
             if (activePlayers.error != null && activePlayers.error.Length > 0)
             {

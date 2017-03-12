@@ -19,6 +19,7 @@ namespace Kodi_on_iMon
                     "idle\t\tDisplays a default scrolling text" + Environment.NewLine +
                     "idle \"TEXT\"\tDisplays the given scrolling TEXT" + Environment.NewLine +
                     "menu\t\tDisplays the menu" + Environment.NewLine +
+                    "kodi\t\tDisplays media information from kodi" + Environment.NewLine +
                     "imon-testdriver\tRuns the imon-testdriver" + Environment.NewLine +
                     "kodi-testdriver\tRuns the kodi-testdriver" + Environment.NewLine + Environment.NewLine +
                     "Example:" + Environment.NewLine +
@@ -59,9 +60,9 @@ namespace Kodi_on_iMon
             }
             else
             {
-                //MessageBox.Show(parameterGuide);
+                MessageBox.Show(parameterGuide);
                 //Application.Run(new KodiTestDriver());
-                Application.Run(new KodiMediaInfo());
+                //Application.Run(new KodiMediaInfo());
                 //Application.Run(new iMonIdle());
                 //Application.Run(new iMonMenu());
                 //Application.Run(new iMon()); //Loading the test driver instead that uses functionality
