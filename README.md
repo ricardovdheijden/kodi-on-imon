@@ -3,7 +3,7 @@ Displaying media info from Kodi 17 on Imon VF310 VFD
 Tested on windows 7, 8 and 10
 
 1 - Installation
-1) Install imon software version 8.12.1202. I was only able to find it here http://www.origenae.co.kr/board/bbs/board.php?bo_table=e_pds&wr_id=118
+1) Install imon software version 8.12.1202. I was only able to find it here http://www.origenae.co.kr/data/iMON_8_12_1202.zip (from page http://www.origenae.co.kr/board/bbs/board.php?bo_table=e_pds&wr_id=118)
 2) Enable plugin mode in imon
 3) Enable Front View in imon
 4) Disable all information sources in Front View (resulting only the time is shown on display)
