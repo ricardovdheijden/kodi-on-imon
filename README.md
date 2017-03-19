@@ -11,5 +11,5 @@ Tested on windows 7, 8 and 10
 6) To make the project work, place the displaywrapper files (Kodi-on-iMon\iMonDisplayApi) in the same folder as the compiled exe file.
 
 2 - Credits
-Project that was my inspiration to start with my current project: https://sourceforge.net/projects/imondisplayapiexamplevbnet/
-imon displaywrapper: https://sourceforge.net/projects/imonapi-sharp
+1) Project that was my inspiration to start with my current project: https://sourceforge.net/projects/imondisplayapiexamplevbnet/
+2) imon displaywrapper: https://sourceforge.net/projects/imonapi-sharp
