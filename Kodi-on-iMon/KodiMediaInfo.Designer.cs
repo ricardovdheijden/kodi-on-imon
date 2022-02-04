@@ -36,6 +36,7 @@
             this.tmrFormRefreshRate = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.tmrKodiRefreshRate = new System.Windows.Forms.Timer(this.components);
+            this.tmrRetryConnecting = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblLine1
@@ -84,6 +85,11 @@
             // 
             this.tmrKodiRefreshRate.Tick += new System.EventHandler(this.tmrKodiRefreshRate_Tick);
             // 
+            // tmrRetryConnecting
+            // 
+            this.tmrRetryConnecting.Interval = 5000;
+            this.tmrRetryConnecting.Tick += new System.EventHandler(this.tmrRetryConnecting_Tick);
+            // 
             // KodiMediaInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,5 +112,6 @@
         private System.Windows.Forms.Timer tmrFormRefreshRate;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.Timer tmrKodiRefreshRate;
+        private System.Windows.Forms.Timer tmrRetryConnecting;
     }
 }

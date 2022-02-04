@@ -2070,4 +2070,7 @@
   <metadata name="tmrKodiRefreshRate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>286, 17</value>
   </metadata>
+  <metadata name="tmrRetryConnecting.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>446, 17</value>
+  </metadata>
 </root>
