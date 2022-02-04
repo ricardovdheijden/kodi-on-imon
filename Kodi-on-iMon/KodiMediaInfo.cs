@@ -16,6 +16,7 @@ namespace Kodi_on_iMon
         int imonRefreshRate = 250;
         int kodiRefreshRate = 500;
         int scrollDelay = 2500;
+        int connectionAttempt = 1;
 
         public KodiMediaInfo()
         {
@@ -30,7 +31,7 @@ namespace Kodi_on_iMon
             imon.initialise();
             imon.setRefreshRate(imonRefreshRate);
             imon.setScrollDelay(scrollDelay);
-            imon.setText("Connecting with", "Kodi...");
+            imon.setText("Connecting to", "Kodi...");
 
             kodi = new Kodi();
 
@@ -86,9 +87,11 @@ namespace Kodi_on_iMon
                 line1 = activePlayers.error;
                 tmrKodiRefreshRate.Enabled = false;
                 btnConnect.Enabled = true;
+                tmrRetryConnecting.Enabled = true;
             }
             else
             {
+                connectionAttempt = 0;
                 if (activePlayers.result.Length > 0)
                 {
                     int playerid = getPlayerId(activePlayers);
@@ -124,7 +127,15 @@ namespace Kodi_on_iMon
         private void btnConnect_Click(object sender, EventArgs e)
         {
             btnConnect.Enabled = false;
-            imon.setText("Connecting with","Kodi...");
+            imon.setText("Connecting to","Kodi...");
+            tmrKodiRefreshRate.Enabled = true;
+        }
+
+        private void tmrRetryConnecting_Tick(object sender, EventArgs e)
+        {
+            tmrRetryConnecting.Enabled = false;
+            btnConnect.Enabled = false;
+            imon.setText("Connecting", "(" + ++connectionAttempt + ")");
             tmrKodiRefreshRate.Enabled = true;
         }
     }

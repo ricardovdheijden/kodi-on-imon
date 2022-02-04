@@ -84,7 +84,7 @@ namespace Kodi_on_iMon
             }
             catch (System.Net.WebException) 
             {
-                response = "{\"error\": \"connectionError\"}";
+                response = "{\"error\": \"Connection Error\"}";
             }
             
             return response;
