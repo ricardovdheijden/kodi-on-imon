@@ -31,11 +31,13 @@ namespace Kodi_on_iMon
                 {
                     if (args[i] == "idle" && args.Length > i + 1)
                     {
-                        Application.Run(new iMonIdle(args[i + 1], true));
+                        new iMonIdle(args[i + 1], true);
+                        Application.Run();
                     }
                     else if (args[i] == "idle")
                     {
-                        Application.Run(new iMonIdle());
+                        new iMonIdle();
+                        Application.Run();
                     }
                     else if (args[i] == "menu")
                     {
@@ -43,7 +45,8 @@ namespace Kodi_on_iMon
                     }
                     else if (args[i] == "kodi")
                     {
-                        Application.Run(new KodiMediaInfo());
+                        new KodiMediaInfo();
+                        Application.Run();
                     }
                     else if (args[i] == "imon-testdriver")
                     {

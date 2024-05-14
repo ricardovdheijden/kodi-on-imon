@@ -22,10 +22,11 @@ namespace Kodi_on_iMon
         {
             InitializeComponent();
 
-            this.ShowInTaskbar = false;
             notifyIcon.Visible = true;
+            this.ShowInTaskbar = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            
             btnConnect.Enabled = false;
-            this.WindowState = FormWindowState.Minimized;
 
             imon = new iMon();
             imon.initialise();

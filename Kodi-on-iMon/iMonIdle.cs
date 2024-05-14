@@ -35,9 +35,9 @@ namespace Kodi_on_iMon
         {
             InitializeComponent();
 
-            this.ShowInTaskbar = false;
             notifyIcon.Visible = true;
-            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             imon = new iMon();
             imon.initialise();
@@ -53,9 +53,9 @@ namespace Kodi_on_iMon
         {
             InitializeComponent();
 
-            this.ShowInTaskbar = false;
             notifyIcon.Visible = true;
-            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             imon = new iMon();
             imon.initialise();
